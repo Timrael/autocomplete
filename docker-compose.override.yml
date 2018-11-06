@@ -1,0 +1,16 @@
+version: '3'
+services:
+  rails:
+    build: ./rails_app/
+    volumes:
+      - ./rails_app/.:/usr/src/app
+    stdin_open: true
+    tty: true
+  go_app:
+    build: ./go_app/
+    volumes:
+      - ./go_app:/go/src/github.com/Timrael/autocomplete/go_app
+  elasticsearch:
+    ports:
+      - 9200:9200
+      - 9300:9300

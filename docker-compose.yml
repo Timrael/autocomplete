@@ -1,0 +1,40 @@
+version: '3'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.2
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - ~/autocomplete_elastic_data:/usr/share/elasticsearch/data
+  go_app:
+    image: timrael/autocomplete_go
+    ports:
+      - 3001:3001
+    restart: always
+    depends_on:
+      - elasticsearch
+    env_file:
+      - docker.env
+  db:
+    env_file:
+      - docker.env
+    image: postgres:10
+    restart: always
+    volumes:
+      - ~/autocomplete_pgdata:/var/lib/postgresql/data
+      - ./snapshots:/snapshots
+  rails:
+    image: timrael/autocomplete_rails
+    command: bundle exec puma -C config/puma.rb
+    restart: always
+    volumes:
+      - ./snapshots:/snapshots
+    depends_on:
+      - db
+      - elasticsearch
+    env_file:
+      - docker.env
+    environment:
+      - RAILS_LOG_TO_STDOUT=true
+    ports:
+      - 3000:3000

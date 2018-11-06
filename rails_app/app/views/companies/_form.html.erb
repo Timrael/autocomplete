@@ -1,0 +1,78 @@
+<%= form_with(model: company, local: true) do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :number %><br>
+    <%= form.text_field :number %>
+  </p>
+
+  <p>
+    <%= form.label :previous_name_1_company_name %><br>
+    <%= form.text_field :previous_name_1_company_name %>
+  </p>
+
+  <p>
+    <%= form.label :previous_name_2_company_name %><br>
+    <%= form.text_field :previous_name_2_company_name %>
+  </p>
+
+  <p>
+    <%= form.label :previous_name_3_company_name %><br>
+    <%= form.text_field :previous_name_3_company_name %>
+  </p>
+
+  <p>
+    <%= form.label :previous_name_4_company_name %><br>
+    <%= form.text_field :previous_name_4_company_name %>
+  </p>
+
+  <p>
+    <%= form.label :previous_name_5_company_name %><br>
+    <%= form.text_field :previous_name_5_company_name %>
+  </p>
+
+  <p>
+    <%= form.label :previous_name_6_company_name %><br>
+    <%= form.text_field :previous_name_6_company_name %>
+  </p>
+
+  <p>
+    <%= form.label :previous_name_7_company_name %><br>
+    <%= form.text_field :previous_name_7_company_name %>
+  </p>
+
+  <p>
+    <%= form.label :previous_name_8_company_name %><br>
+    <%= form.text_field :previous_name_8_company_name %>
+  </p>
+
+  <p>
+    <%= form.label :previous_name_9_company_name %><br>
+    <%= form.text_field :previous_name_9_company_name %>
+  </p>
+
+  <p>
+    <%= form.label :previous_name_10_company_name %><br>
+    <%= form.text_field :previous_name_10_company_name %>
+  </p>
+
+
+  <% if company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+      <% company.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
